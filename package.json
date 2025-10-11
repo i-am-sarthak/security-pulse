@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,9 +20,17 @@
   "devDependencies": {
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.7.2",
     "@types/pg": "^8.15.5",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-am-sarthak/security-pulse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/i-am-sarthak/security-pulse/issues"
+  },
+  "homepage": "https://github.com/i-am-sarthak/security-pulse#readme"
 }
