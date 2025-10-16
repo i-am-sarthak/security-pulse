@@ -4,6 +4,8 @@ dotenv.config();
 import express from "express"
 import healthRouter from "./routes/health";
 import usersRouter from './routes/users';
+import authRouter from './routes/auth';
+import { verifyToken } from './middleware/verifyToken';
 import { config } from './config/default';
 
 
@@ -16,6 +18,11 @@ app.use(express.json());
 //Routes
 app.use("/api/health", healthRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/auth', authRouter);
+
+app.get('/api/me', verifyToken, (req, res) => {
+  res.json({ user: (req as any).user });
+});
 
 //Start server
 app.listen(PORT, () => {
