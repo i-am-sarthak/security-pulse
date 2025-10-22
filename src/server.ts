@@ -14,6 +14,9 @@ import { config } from './config/default';
 const app = express();
 const PORT = config.port;
 
+import cors from "cors";
+app.use(cors());
+
 //Middleware
 app.use(express.json());
 
