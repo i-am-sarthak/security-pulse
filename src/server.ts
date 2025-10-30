@@ -9,6 +9,7 @@ import articlesRouter from './routes/articles';
 import savedArticlesRouter from './routes/savedArticles';
 import { verifyToken } from './middleware/verifyToken';
 import { config } from './config/default';
+import { success, failure } from './utils/response';
 
 
 const app = express();
@@ -28,7 +29,17 @@ app.use('/api/articles', articlesRouter);
 app.use('/api/saved', savedArticlesRouter);
 
 app.get('/api/me', verifyToken, (req, res) => {
-  res.json({ user: (req as any).user });
+  try {
+    const user = (req as any).user;
+    if (!user) {
+      return res.status(404).json(failure('User not found', 'NOT_FOUND'));
+    }
+
+    return res.status(200).json(success(user, 'User fetched successfully'));
+  } catch (err) {
+    console.error('Error in /api/me:', err);
+    return res.status(500).json(failure('Failed to fetch user info', 'SERVER_ERROR'));
+  }
 });
 
 //Start server
