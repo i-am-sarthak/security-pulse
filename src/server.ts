@@ -10,13 +10,19 @@ import savedArticlesRouter from './routes/savedArticles';
 import { verifyToken } from './middleware/verifyToken';
 import { config } from './config/default';
 import { success, failure } from './utils/response';
-
+import helmet from "helmet";
+import cors from "cors";
 
 const app = express();
 const PORT = config.port;
 
-import cors from "cors";
-app.use(cors());
+//Security midleware
+app.use(helmet());
+
+app.use(cors({
+  origin: "http://localhost:5173", // React dev server
+  credentials: true
+}));
 
 // NOTE: Could add centralized error handling (asyncHandler + errorMiddleware) for production use.
 //Middleware
