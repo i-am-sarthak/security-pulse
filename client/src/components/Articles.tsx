@@ -15,7 +15,7 @@ export const Articles = () => {
   useEffect(() => {
     axios
       .get("http://localhost:4000/api/articles")
-      .then((res) => setArticles(res.data))
+      .then((res) => setArticles(res.data.data))
       .catch((err) => console.error(err));
   }, []);
 

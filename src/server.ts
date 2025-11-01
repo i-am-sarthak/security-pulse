@@ -18,6 +18,7 @@ const PORT = config.port;
 import cors from "cors";
 app.use(cors());
 
+// NOTE: Could add centralized error handling (asyncHandler + errorMiddleware) for production use.
 //Middleware
 app.use(express.json());
 
