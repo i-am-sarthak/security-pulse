@@ -1,0 +1,68 @@
+import { useForm } from "react-hook-form";
+import axios, { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
+
+interface LoginForm {
+  email: string;
+  password: string;
+}
+
+export const Login = () => {
+  const { register, handleSubmit } = useForm<LoginForm>();
+  const navigate = useNavigate();
+
+  const onSubmit = async (data: LoginForm) => {
+    try {
+      const res = await axios.post("http://localhost:4000/api/auth/login", data);
+      localStorage.setItem("token", res.data.data.token);
+      alert("Login successful!");
+      navigate("/");
+    } catch (err: unknown) {
+      const error = err as AxiosError<{ message?: string }>;
+      alert(error.response?.data?.message || "Login failed");
+    }
+  };
+
+  return (
+    <div style={{ padding: "2rem", textAlign: "center" }}>
+      <h2>Login</h2>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "300px",
+          margin: "1rem auto",
+          gap: "1rem",
+        }}
+      >
+        <input
+          placeholder="Email"
+          type="email"
+          {...register("email")}
+          required
+          style={{ padding: "0.5rem" }}
+        />
+        <input
+          placeholder="Password"
+          type="password"
+          {...register("password")}
+          required
+          style={{ padding: "0.5rem" }}
+        />
+        <button
+          type="submit"
+          style={{
+            padding: "0.5rem",
+            backgroundColor: "#28a745",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+          }}
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  );
+};
