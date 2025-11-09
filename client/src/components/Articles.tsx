@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "../context/useAuth";
+import { useNavigate } from "react-router-dom";
 
 interface Article {
   id: number;
@@ -11,6 +13,8 @@ interface Article {
 
 export const Articles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -19,9 +23,21 @@ export const Articles = () => {
       .catch((err) => console.error(err));
   }, []);
 
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>Security Pulse Articles</h1>
+      <div style={{ display: "flex", justifyContent: "space-between"}}>
+        <h1>Security Pulse Articles</h1>
+        {isAuthenticated && (
+          <button onClick={handleLogout} style={{ height: "2rem" }}>
+            Logout
+          </button>
+        )}
+      </div>
       {articles.map((a) => (
         <div key={a.id} style={{ marginBottom: "1rem" }}>
           <h2>{a.title}</h2>

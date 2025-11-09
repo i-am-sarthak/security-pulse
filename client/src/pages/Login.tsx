@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/useAuth";
 
 interface LoginForm {
   email: string;
@@ -10,11 +11,18 @@ interface LoginForm {
 export const Login = () => {
   const { register, handleSubmit } = useForm<LoginForm>();
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const onSubmit = async (data: LoginForm) => {
     try {
       const res = await axios.post("http://localhost:4000/api/auth/login", data);
-      localStorage.setItem("token", res.data.data.token);
+      // localStorage.setItem("token", res.data.data.token);
+      
+      const token = res.data?.data?.token;
+      if (!token) throw new Error("Missing token in response");
+
+      login(token);
+
       alert("Login successful!");
       navigate("/");
     } catch (err: unknown) {
