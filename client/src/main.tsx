@@ -7,6 +7,7 @@ import { Register } from "./pages/Register";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Dashboard } from "./pages/Dashboard";
+import { SavedArticles } from "./pages/SavedArticles";
 
 const router = createBrowserRouter([
   { path: "/", element: <Articles /> },
@@ -16,10 +17,7 @@ const router = createBrowserRouter([
     path: "/saved",
     element: (
       <ProtectedRoute>
-          <div style={{ padding: "2rem" }}>
-          <h2>Saved Articles (Protected Route)</h2>
-          <p>You can only see this page when logged in!</p>
-        </div>
+        <SavedArticles />
       </ProtectedRoute>
     ),
   },
