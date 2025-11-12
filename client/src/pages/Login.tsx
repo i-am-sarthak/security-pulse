@@ -24,7 +24,7 @@ export const Login = () => {
       login(token);
 
       alert("Login successful!");
-      navigate("/");
+      navigate("/dashboard");
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
       alert(error.response?.data?.message || "Login failed");

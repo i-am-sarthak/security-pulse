@@ -1,7 +1,7 @@
-import { Navbar } from "./components/Navbar";
+import { Navbar } from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 
-export default function App() {
+export const MainLayout = () => {
   return (
     <div className="bg-navy min-h-screen text-gray-light">
       <Navbar />
@@ -10,4 +10,4 @@ export default function App() {
       </main>
     </div>
   );
-}
+};

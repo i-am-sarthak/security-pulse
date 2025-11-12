@@ -52,29 +52,38 @@ export const Dashboard = () => {
     return <p style={{ padding: "2rem" }}>No articles available.</p>;
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h1>📰 Security Pulse Dashboard</h1>
-      {articles.map((a) => (
-        <div
-          key={a.id}
-          style={{
-            border: "1px solid #ddd",
-            borderRadius: "8px",
-            padding: "1rem",
-            marginBottom: "1rem",
-          }}
-        >
-          <h2>{a.title}</h2>
-          <p>
-            <strong>Source:</strong> {a.source}
-          </p>
-          <p>
-            <strong>Date:</strong> {a.published_at}
-          </p>
-          <p>{a.summary}</p>
-          <button onClick={() => handleSave(a.id)}>Save</button>
+    <div className="min-h-screen bg-navy text-gray-light px-6 py-8 animate-fadeIn">
+      <h1 className="text-3xl font-bold text-accent mb-8">Your Dashboard</h1>
+
+      {loading ? (
+        <p className="text-gray-light text-lg">Loading articles...</p>
+      ) : articles.length === 0 ? (
+        <p className="text-gray-light text-lg">No articles available.</p>
+      ) : (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {articles.map((a) => (
+            <div
+              key={a.id}
+              className="bg-gray-dark rounded-xl shadow-md hover:shadow-accent/30 p-5 transition-transform duration-200 hover:scale-[1.02]"
+            >
+              <h2 className="text-xl font-semibold text-accent mb-2">{a.title}</h2>
+              <p className="text-gray-light text-sm mb-1">
+                <strong>Source:</strong> {a.source}
+              </p>
+              <p className="text-gray-light text-sm mb-3">
+                <strong>Date:</strong> {a.published_at}
+              </p>
+              <p className="text-gray-light mb-4">{a.summary}</p>
+              <button
+                onClick={() => handleSave(a.id)}
+                className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
+              >
+                Save
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };
