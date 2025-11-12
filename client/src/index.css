@@ -15,3 +15,18 @@ body {
   font-family: "Inter", sans-serif;
   scroll-behavior: smooth;
 }
+
+@keyframes slideDownFade {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDownFade {
+  animation: slideDownFade 0.25s ease-out;
+}
