@@ -18,7 +18,10 @@ const app = express();
 app.use(helmet());
 
 app.use(cors({
-  origin: "http://localhost:5173", // React dev server
+  origin: [
+    "http://localhost:5173",
+    "https://security-pulse-tau.vercel.app"
+  ],
   credentials: true
 }));
 
