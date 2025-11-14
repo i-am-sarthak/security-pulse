@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { API } from "../api";
+import "../index.css";
 // import { useAuth } from "../context/useAuth";
 // import { useNavigate } from "react-router-dom";
-import "../index.css";
 
 interface Article {
   id: number;
@@ -19,7 +20,7 @@ export const Articles = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/api/articles")
+      .get(`${API}/api/articles`)
       .then((res) => setArticles(res.data.data.data))
       .catch((err) => console.error(err));
   }, []);

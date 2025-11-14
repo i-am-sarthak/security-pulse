@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
+import { API } from "../api";
 
 interface RegsiterForm {
   name: string,
@@ -15,7 +16,7 @@ export const Register = () => {
 
   const onSubmit = async (data: RegsiterForm) => {
     try {
-      await axios.post("http://localhost:4000/api/auth/register", data);
+      await axios.post(`${API}/api/auth/register`, data);
       alert("Registration successful! You can now login.");
       navigate("/login");
     } catch (err: unknown) {

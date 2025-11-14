@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/useAuth";
+import { API } from "../api";
 
 interface Article {
   id: number;
@@ -18,7 +19,7 @@ export const Dashboard = () => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/api/articles", {
+        const res = await axios.get(`${API}/api/articles`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setArticles(res.data.data.data);
@@ -35,7 +36,7 @@ export const Dashboard = () => {
   const handleSave = async (articleId: number) => {
     try {
       await axios.post(
-        `http://localhost:4000/api/saved/${articleId}`,
+        `${API}/api/saved/${articleId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

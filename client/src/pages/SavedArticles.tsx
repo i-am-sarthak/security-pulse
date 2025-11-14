@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/useAuth";
+import { API } from "../api";
 
 interface Article {
   id: number;
@@ -17,7 +18,7 @@ export const SavedArticles = () => {
 
   const fetchSavedArticles = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/saved", {
+      const res = await axios.get(`${API}/api/saved`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setArticles(res.data.data);
@@ -34,7 +35,7 @@ export const SavedArticles = () => {
 
   const handleRemove = async (articleId: number) => {
     try {
-      await axios.delete(`http://localhost:4000/api/saved/${articleId}`, {
+      await axios.delete(`${API}/api/saved/${articleId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setArticles((prev) => prev.filter((a) => a.id !== articleId));

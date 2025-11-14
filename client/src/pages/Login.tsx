@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import { API } from "../api";
 
 interface LoginForm {
   email: string;
@@ -15,7 +16,7 @@ export const Login = () => {
 
   const onSubmit = async (data: LoginForm) => {
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", data);
+      const res = await axios.post(`${API}/api/auth/login`, data);
       // localStorage.setItem("token", res.data.data.token);
       
       const token = res.data?.data?.token;
