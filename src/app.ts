@@ -7,6 +7,7 @@ import usersRouter from './routes/users';
 import authRouter from './routes/auth';
 import articlesRouter from './routes/articles';
 import savedArticlesRouter from './routes/savedArticles';
+import newsRouter from './routes/news';
 import { verifyToken } from './middleware/verifyToken';
 import { success, failure } from './utils/response';
 import helmet from "helmet";
@@ -35,6 +36,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/auth', authRouter);
 app.use('/api/articles', articlesRouter);
 app.use('/api/saved', savedArticlesRouter);
+app.use('/api/news', newsRouter);
 
 app.get('/api/me', verifyToken, (req, res) => {
   try {
