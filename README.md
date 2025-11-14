@@ -1,26 +1,60 @@
 # Security Pulse
 
 A full-stack cybersecurity news and awareness platform built with **Node.js (Express + TypeScript)**, **PostgreSQL**, and **React (Vite + TypeScript)**.  
-It allows users to register, log in, view cybersecurity articles, and save their favorites securely.
+It features authentication, article saving, and a responsive Tailwind UI.
 
 ---
 
-## Features
-- User authentication with **JWT**
-- PostgreSQL database for users & articles
-- Save/unsave articles for logged-in users
-- Pagination, filtering, and search for articles
-- RESTful API with structured responses
-- Full test coverage using **Jest + Supertest**
+## Live Demo
+**Frontend:** https://security-pulse-tau.vercel.app
+
+**Backend:** https://security-pulse.onrender.com/api/health
+
+**Database:** PostgreSQL (Render hosted)
 
 ---
 
 ## Tech Stack
 **Backend:** Node.js, Express, TypeScript, PostgreSQL  
-**Frontend:** React, Vite, TypeScript, Axios  
-**Testing:** Jest, Supertest  
-**Security:** Helmet, CORS, bcryptjs, JWT  
+**Frontend:** React, Vite, TypeScript, TailwindCSS  
+**Security:** Helmet, CORS, bcryptjs, JWT 
+**Testing:** Jest, Supertest   
+**Deployment:** Vercel (frontend) & Render (backend)
 **Dev Tools:** ts-node-dev, ESLint, Prettier
+
+---
+
+## Features
+- User authentication with **JWT**
+- Protected routes + context-based auth
+- PostgreSQL database for users & articles
+- Save/unsave articles for logged-in users
+- Pagination, filtering, and search for articles
+- Responsive UI + mobile navbar
+- RESTful API with structured responses
+- Full test coverage using **Jest + Supertest**
+
+---
+
+## Automated News Feed (Bonus Feature)
+
+Security Pulse now updates itself automatically every day.
+
+### 📰 Live Cybersecurity News
+The backend integrates with a cybersecurity news source (SecureWeek API) to fetch real articles, including:
+- Title
+- Source
+- Date Published
+- Summary
+
+### Daily Scheduled Cron Job
+A background job runs **every day at 20:00 UTC**:
+
+1. Fetches the latest cybersecurity articles  
+2. Normalizes and cleans the data  
+3. Checks for duplicates in PostgreSQL  
+4. Inserts only new articles  
+5. Keeps the feed continuously fresh
 
 ---
 
@@ -131,14 +165,6 @@ Open your **root** `package.json` and add these under `"scripts"`:
 }
 ```
 If you already have some scripts (like the default start), that’s fine — just make sure these three are present.
-
----
-
-## Status
-✅ Backend complete
-✅ Frontend integrated
-✅ Testing implemented
-⬜ CI/CD setup (coming soon)
 
 ---
 
