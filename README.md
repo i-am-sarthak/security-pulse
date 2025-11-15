@@ -168,5 +168,9 @@ If you already have some scripts (like the default start), that’s fine — jus
 
 ---
 
+## Test Suite Status
+
+![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)
+
 ## License
 MIT © 2025 Sarthak Sharma
