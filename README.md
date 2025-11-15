@@ -48,7 +48,7 @@ The backend integrates with a cybersecurity news source (SecureWeek API) to fetc
 - Summary
 
 ### Daily Scheduled Cron Job
-A background job runs **every day at 20:00 UTC**:
+A background job runs **every day at 08:00 UTC**:
 
 1. Fetches the latest cybersecurity articles  
 2. Normalizes and cleans the data  
