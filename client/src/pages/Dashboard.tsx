@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/useAuth";
 import { API } from "../api";
+import { formatDate } from "../utils/formatDate";
 
 interface Article {
   id: number;
@@ -78,7 +79,7 @@ export const Dashboard = () => {
                   <strong>Source:</strong> {a.source}
                 </p>
                 <p className="text-gray-light text-sm mb-3">
-                  <strong>Date:</strong> {a.published_at}
+                  <strong>Date:</strong> {formatDate(a.published_at)}
                 </p>
                 <p className="text-gray-light mb-4">{a.summary}</p>
                 <button

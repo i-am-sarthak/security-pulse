@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API } from "../api";
 import "../index.css";
+import { formatDate } from "../utils/formatDate";
 // import { useAuth } from "../context/useAuth";
 // import { useNavigate } from "react-router-dom";
 
@@ -52,7 +53,7 @@ export const Articles = () => {
                 <strong>Source:</strong> {a.source}
               </p>
               <p className="text-gray-light text-sm mb-3">
-                <strong>Date:</strong> {a.published_at}
+                <strong>Date:</strong> {formatDate(a.published_at)}
               </p>
               <p className="text-gray-light mb-4">{a.summary}</p>
               {/* <button className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition">
