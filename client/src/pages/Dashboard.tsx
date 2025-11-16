@@ -29,6 +29,7 @@ export const Dashboard = () => {
         });
         setArticles(res.data.data.data);
         setTotalPages(res.data.data.totalPages);
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } catch (err) {
         console.error("Failed to fetch articles:", err);
       } finally {
