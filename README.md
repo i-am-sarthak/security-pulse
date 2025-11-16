@@ -17,9 +17,9 @@ It features authentication, article saving, and a responsive Tailwind UI.
 ## Tech Stack
 **Backend:** Node.js, Express, TypeScript, PostgreSQL  
 **Frontend:** React, Vite, TypeScript, TailwindCSS  
-**Security:** Helmet, CORS, bcryptjs, JWT 
-**Testing:** Jest, Supertest   
-**Deployment:** Vercel (frontend) & Render (backend)
+**Security:** Helmet, CORS, bcryptjs, JWT  
+**Testing:** Jest, Supertest  
+**Deployment:** Vercel (frontend) & Render (backend)  
 **Dev Tools:** ts-node-dev, ESLint, Prettier
 
 ---
