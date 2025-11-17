@@ -10,6 +10,7 @@ interface Article {
   source: string;
   published_at: string;
   summary: string;
+  url: string;
 }
 
 export const Dashboard = () => {
@@ -83,12 +84,22 @@ export const Dashboard = () => {
                   <strong>Date:</strong> {formatDate(a.published_at)}
                 </p>
                 <p className="text-gray-light mb-4">{a.summary}</p>
-                <button
-                  onClick={() => handleSave(a.id)}
-                  className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
-                >
-                  Save
-                </button>
+                <div className="flex justify-between items-center mt-4">
+                  <button
+                    onClick={() => handleSave(a.id)}
+                    className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
+                  >
+                    Save
+                  </button>
+                  <a
+                    href={a.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-accent font-semibold hover:underline"
+                  >
+                    Read more →
+                  </a>
+                </div>
               </div>
             ))}
           </div>
