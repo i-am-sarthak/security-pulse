@@ -63,7 +63,7 @@ useEffect(() => {
                 <p className="text-gray-light text-sm mb-3">
                   <strong>Date:</strong> {formatDate(a.published_at)}
                 </p>
-                <p className="text-gray-light mb-4">{a.summary}</p>
+                <p className="text-gray-light mb-4 text-justify leading-relaxed hyphens-auto">{a.summary}</p>
                 {/* <button className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition">
                   Save
                 </button> */}

@@ -75,7 +75,7 @@ export const SavedArticles = () => {
         {articles.map((a) => (
           <div
             key={a.id}
-            className="bg-gray-dark rounded-xl shadow-md hover:shadow-accent/30 p-5 transition-transform duration-200 hover:scale-[1.02]"
+            className="bg-gray-dark rounded-xl shadow-md hover:shadow-accent/30 p-5 transition-transform duration-200 hover:scale-[1.02] flex flex-col"
           >
             <h2 className="text-xl font-semibold text-accent mb-2">{a.title}</h2>
             <p className="text-gray-light text-sm mb-1">
@@ -84,8 +84,8 @@ export const SavedArticles = () => {
             <p className="text-gray-light text-sm mb-3">
               <strong>Date:</strong> {formatDate(a.published_at)}
             </p>
-            <p className="text-gray-light mb-4">{a.summary}</p>
-            <div className="flex justify-between items-center mt-4">
+            <p className="text-gray-light mb-4 text-justify leading-relaxed hyphens-auto">{a.summary}</p>
+            <div className="flex justify-between items-center mt-auto">
               <button
                 onClick={() => window.confirm("Remove this article?") && handleRemove(a.id)}
                 className="bg-red-600 text-white px-3 py-2 rounded-md font-semibold hover:bg-red-700 transition"
@@ -96,7 +96,7 @@ export const SavedArticles = () => {
                 href={a.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-accent font-semibold hover:underline"
+                className="text-accent font-semibold hover:underline cursor-pointer"
               >
                 Read more →
               </a>
