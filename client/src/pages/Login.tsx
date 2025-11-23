@@ -71,6 +71,16 @@ export const Login = () => {
         >
           Login
         </button>
+        <p className="mt-3 text-sm text-gray-300">
+          Don’t have an account?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            className="text-accent font-semibold cursor-pointer hover:underline"
+          >
+            Register
+          </span>
+        </p>
+
       </form>
     </div>
   );
