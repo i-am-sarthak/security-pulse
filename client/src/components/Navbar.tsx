@@ -25,7 +25,7 @@ export const Navbar = () => {
           {isAuthenticated ? (
             <>
               <Link to="/dashboard" className="hover:text-accent transition">
-                Articles
+                Home
               </Link>
               <Link to="/saved" className="hover:text-accent transition">
                 Saved

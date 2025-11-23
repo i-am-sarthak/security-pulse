@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "../context/useAuth";
 import { API } from "../api";
 import { formatDate } from "../utils/formatDate";
+import { useNavigate } from "react-router-dom";
 
 interface Article {
   id: number;
@@ -13,12 +14,17 @@ interface Article {
   url: string;
 }
 
-export const Dashboard = () => {
+interface DashboardProps {
+    readOnly?: boolean;
+}
+
+export const Dashboard = ({ readOnly = false }: DashboardProps) => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 12;
+  const navigate = useNavigate();
 
   const { token } = useAuth();
 
@@ -62,7 +68,7 @@ export const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-navy text-gray-light px-6 py-8 animate-fadeIn">
-      <h1 className="text-3xl font-bold text-accent mb-8">Your Dashboard</h1>
+      <h1 className="text-3xl font-bold text-accent mb-8">Dashboard</h1>
 
       {loading ? (
         <p className="text-gray-light text-lg">Loading articles...</p>
@@ -85,12 +91,35 @@ export const Dashboard = () => {
                 </p>
                 <p className="text-gray-light mb-4 text-justify leading-relaxed hyphens-auto">{a.summary}</p>
                 <div className="flex justify-between items-center mt-auto">
-                  <button
-                    onClick={() => handleSave(a.id)}
-                    className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
-                  >
-                    Save
-                  </button>
+                  {readOnly ? (
+                    <div className="relative group">
+                      <button
+                        onClick={() => navigate("/login")}
+                        className="bg-gray-600 text-navy px-3 py-2 rounded-md font-semibold
+                                  cursor-pointer group-hover:bg-gray-500 transition"
+                      >
+                        Save
+                      </button>
+
+                      {/* Custom Tooltip */}
+                      <span
+                        className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2
+                                  bg-gray-800 text-gray-100 text-xs rounded-md px-2 py-1
+                                  opacity-0 group-hover:opacity-100 transition
+                                  whitespace-nowrap shadow-lg"
+                      >
+                        Login to save articles
+                      </span>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => handleSave(a.id)}
+                      className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
+                    >
+                      Save
+                    </button>
+                  )}
+
                   <a
                     href={a.url}
                     target="_blank"

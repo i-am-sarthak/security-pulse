@@ -2,12 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MainLayout } from "./layouts/MainLayout";
-import { Articles } from "./components/Articles";
+// import { Articles } from "./components/Articles";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
-import { Dashboard } from "./pages/Dashboard";
+import { DashboardPublicWrapper } from "./pages/DashboardPublicWrapper";
+// import { Dashboard } from "./pages/Dashboard";
 import { SavedArticles } from "./pages/SavedArticles";
 import "./index.css"
 
@@ -15,15 +16,9 @@ const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      { path: "/", element: <Articles /> },
-      {
-        path: "/dashboard",
-        element: (
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        ),
-      },
+      // { path: "/", element: <Articles /> },
+      { path: "/", element: <DashboardPublicWrapper /> },
+      { path: "/dashboard", element: <DashboardPublicWrapper />},
       {
         path: "/saved",
         element: (
