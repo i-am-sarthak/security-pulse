@@ -33,45 +33,36 @@ export const Login = () => {
   };
 
   return (
-    <div style={{ padding: "2rem", textAlign: "center" }}>
-      <h2>Login</h2>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "300px",
-          margin: "1rem auto",
-          gap: "1rem",
-        }}
-      >
-        <input
-          placeholder="Email"
-          type="email"
-          {...register("email")}
-          required
-          style={{ padding: "0.5rem" }}
-        />
-        <input
-          placeholder="Password"
-          type="password"
-          {...register("password")}
-          required
-          style={{ padding: "0.5rem" }}
-        />
-        <button
-          type="submit"
-          style={{
-            padding: "0.5rem",
-            backgroundColor: "#28a745",
-            color: "white",
-            border: "none",
-            cursor: "pointer",
-          }}
-        >
-          Login
-        </button>
-        <p className="mt-3 text-sm text-gray-300">
+    <div className="min-h-screen bg-navy flex items-center justify-center p-4">
+      <div className="bg-gray-dark w-full max-w-sm p-8 rounded-2xl shadow-lg animate-fadeIn">
+        <h2 className="text-2xl font-bold text-accent mb-6 text-center">Login</h2>
+
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email")}
+            required
+            className="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-light focus:outline-none focus:ring-2 focus:ring-accent"
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password")}
+            required
+            className="w-full px-4 py-2 rounded-lg bg-gray-700 text-gray-light focus:outline-none focus:ring-2 focus:ring-accent"
+          />
+
+          <button
+            type="submit"
+            className="w-full bg-accent text-navy py-2 rounded-lg font-semibold hover:bg-gray-light transition"
+          >
+            Login
+          </button>
+        </form>
+
+        <p className="mt-4 text-sm text-gray-300 text-center">
           Don’t have an account?{" "}
           <span
             onClick={() => navigate("/register")}
@@ -80,8 +71,7 @@ export const Login = () => {
             Register
           </span>
         </p>
-
-      </form>
+      </div>
     </div>
   );
 };

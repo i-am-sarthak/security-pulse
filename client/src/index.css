@@ -30,3 +30,13 @@ body {
 .animate-slideDownFade {
   animation: slideDownFade 0.25s ease-out;
 }
+
+/* Fix Chrome autofill background turning fields white */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #374151 inset !important; /* bg-gray-700 */
+  box-shadow: 0 0 0px 1000px #374151 inset !important;
+  -webkit-text-fill-color: #e5e7eb !important; /* text-gray-light */
+  transition: background-color 9999s ease-out, color 9999s ease-out;
+}
