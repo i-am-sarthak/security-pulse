@@ -19,9 +19,14 @@ const registerSchema = z.object({
 router.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   try {
-    if (!name || !email || !password) {
-      return res.status(400).json(failure('All fields are required', 'VALIDATION_ERROR'));
+    const parsed = registerSchema.safeParse(req.body);
+
+    if (!parsed.success) {
+      const errors = parsed.error.issues.map(issue => issue.message);
+      return res.status(400).json(failure(errors.join(', '), 'VALIDATION_ERROR'));
     }
+
+    const { name, email, password } = parsed.data;
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
