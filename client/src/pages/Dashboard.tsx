@@ -49,12 +49,12 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
 
   const handleSave = async (articleId: number) => {
     try {
-      await axios.post(
+      const res = await axios.post(
         `${API}/api/saved/${articleId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("Article saved!");
+      alert(res.data.message);
     } catch (err) {
       console.error("Failed to save article:", err);
       alert("Failed to save article");

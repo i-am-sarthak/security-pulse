@@ -30,10 +30,20 @@ router.post('/:articleId', verifyToken, async (req: any, res) => {
   const articleId = req.params.articleId;
 
   try {
-    await pool.query(
-      'INSERT INTO users_articles (user_id, article_id) VALUES ($1, $2) ON CONFLICT DO NOTHING',
+    const result = await pool.query(
+      `INSERT INTO users_articles (user_id, article_id)
+      VALUES ($1, $2)
+      ON CONFLICT DO NOTHING
+      RETURNING *`,
       [userId, articleId]
     );
+    
+    if (result.rowCount === 0) {
+      return res.status(200).json(
+        success(null, "Article is already in your saved list")
+      );
+    }
+
     return res.status(201).json(success(null, 'Article saved successfully'));
   } catch (err) {
     console.error('Error saving article:', err);
