@@ -16,6 +16,7 @@ interface Article {
 export const SavedArticles = () => {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
+  const [sort, setSort] = useState("latest");
   const { token } = useAuth();
 
   const fetchSavedArticles = async () => {
@@ -23,7 +24,15 @@ export const SavedArticles = () => {
       const res = await axios.get(`${API}/api/saved`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setArticles(res.data.data);
+      let list = res.data.data;
+      if (sort === "latest") {
+        list = [...list].sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+      }
+      if (sort === "oldest") {
+        list = [...list].sort((a, b) => new Date(a.published_at).getTime() - new Date(b.published_at).getTime());
+      }
+
+      setArticles(list);
     } catch (err) {
       console.error("Failed to fetch saved articles:", err);
     } finally {
@@ -33,7 +42,7 @@ export const SavedArticles = () => {
 
   useEffect(() => {
     fetchSavedArticles();
-  }, [token]);
+  }, [token, sort]);
 
   const handleRemove = async (articleId: number) => {
     try {
@@ -69,7 +78,17 @@ export const SavedArticles = () => {
 
   return (
     <div className="min-h-screen bg-navy text-gray-light px-6 py-8 animate-fadeIn">
-      <h1 className="text-3xl font-bold text-accent mb-8">Your Saved Articles</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-accent">Your Saved Articles</h1>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="bg-gray-dark text-gray-light border border-gray-light rounded-md px-3 py-2"
+        >
+          <option value="latest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {articles.map((a) => (

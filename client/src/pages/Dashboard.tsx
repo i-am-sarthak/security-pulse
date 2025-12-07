@@ -23,6 +23,7 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [sort, setSort] = useState("latest");
   const limit = 12;
   const navigate = useNavigate();
 
@@ -31,7 +32,7 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const res = await axios.get(`${API}/api/articles?page=${page}&limit=${limit}`, {
+        const res = await axios.get(`${API}/api/articles?page=${page}&limit=${limit}&sort=${sort}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setArticles(res.data.data.data);
@@ -45,7 +46,7 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
     };
 
     fetchArticles();
-  }, [token, page]);
+  }, [token, page, sort]);
 
   const handleSave = async (articleId: number) => {
     try {
@@ -68,7 +69,21 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
 
   return (
     <div className="min-h-screen bg-navy text-gray-light px-6 py-8 animate-fadeIn">
-      <h1 className="text-3xl font-bold text-accent mb-8">Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-accent">Your Dashboard</h1>
+
+        <select
+          value={sort}
+          onChange={(e) => {
+            setSort(e.target.value);
+            setPage(1);
+          }}
+          className="bg-gray-dark text-gray-light border border-gray-light rounded-md px-3 py-2"
+        >
+          <option value="latest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+        </select>
+      </div>
 
       {loading ? (
         <p className="text-gray-light text-lg">Loading articles...</p>
