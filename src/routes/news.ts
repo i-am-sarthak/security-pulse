@@ -13,7 +13,8 @@ router.get("/fetch", async (req, res) => {
     // Cleanup old articles
     await pool.query(
       `DELETE FROM articles
-       WHERE published_at < NOW() - INTERVAL '30 days'`
+       WHERE published_at < NOW() - INTERVAL '30 days'
+       AND id NOT IN (SELECT article_id FROM users_articles)`
     );
 
     return res.status(200).json(success(data, "News fetched & saved"));
