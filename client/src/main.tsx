@@ -11,6 +11,8 @@ import { DashboardPublicWrapper } from "./pages/DashboardPublicWrapper";
 // import { Dashboard } from "./pages/Dashboard";
 import { SavedArticles } from "./pages/SavedArticles";
 import "./index.css"
+import { Toaster } from 'react-hot-toast';
+
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AuthProvider>
+        <Toaster position="top-center" />
         <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>

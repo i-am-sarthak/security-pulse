@@ -3,6 +3,7 @@ import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 import { API } from "../api";
+import toast from "react-hot-toast";
 
 interface LoginForm {
   email: string;
@@ -24,11 +25,13 @@ export const Login = () => {
 
       login(token);
 
-      alert("Login successful!");
+      toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
-      alert(error.response?.data?.message || "Login failed");
+      toast.error(
+        error.response?.data?.message || "Invalid email or password"
+      );
     }
   };
 

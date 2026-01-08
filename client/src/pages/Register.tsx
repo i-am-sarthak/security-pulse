@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AxiosError } from "axios";
 import { API } from "../api";
+import toast from "react-hot-toast";
 
 interface RegsiterForm {
   name: string,
@@ -17,11 +18,13 @@ export const Register = () => {
   const onSubmit = async (data: RegsiterForm) => {
     try {
       await axios.post(`${API}/api/auth/register`, data);
-      alert("Registration successful! You can now login.");
+      toast.success("Registration successful! You can now login.");
       navigate("/login");
     } catch (err: unknown) {
       const error = err as AxiosError<{ message?: string }>;
-      alert(error.response?.data?.message || "Registration failed");
+      toast.error(
+        error.response?.data?.message || "Registration failed"
+      );
     }
   };
 

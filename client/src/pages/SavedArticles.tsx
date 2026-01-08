@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "../context/useAuth";
 import { API } from "../api";
 import { formatDate } from "../utils/formatDate";
+import toast from "react-hot-toast";
 
 interface Article {
   id: number;
@@ -50,10 +51,10 @@ export const SavedArticles = () => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setArticles((prev) => prev.filter((a) => a.id !== articleId));
-      alert("Article removed!");
+      toast.success("Article removed!");
     } catch (err) {
       console.error("Failed to remove article:", err);
-      alert("Failed to remove article.");
+      toast.error("Could not remove article.");
     }
   };
 

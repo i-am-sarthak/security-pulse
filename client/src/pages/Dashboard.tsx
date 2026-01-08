@@ -4,6 +4,7 @@ import { useAuth } from "../context/useAuth";
 import { API } from "../api";
 import { formatDate } from "../utils/formatDate";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 interface Article {
   id: number;
@@ -55,10 +56,10 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert(res.data.message);
+      toast.success(res.data.message || "Article saved");
     } catch (err) {
       console.error("Failed to save article:", err);
-      alert("Failed to save article");
+      toast.error("Could not save article");
     }
   };
 
