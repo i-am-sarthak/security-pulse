@@ -69,9 +69,17 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
     return <p style={{ padding: "2rem" }}>No articles available.</p>;
 
   return (
-    <div className="min-h-screen bg-navy text-gray-light px-6 py-8 animate-fadeIn">
+    <div
+      className="
+        min-h-screen px-6 py-8 animate-fadeIn
+        bg-surface-muted text-charcoal
+        dark:bg-navy dark:text-gray-light
+        transition-colors
+      "
+    >
+
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-bold text-accent">Your Dashboard</h1>
+        <h1 className="text-3xl font-bold text-accent-light dark:text-accent">Your Dashboard</h1>
 
         <select
           value={sort}
@@ -79,7 +87,12 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
             setSort(e.target.value);
             setPage(1);
           }}
-          className="bg-gray-dark text-gray-light border border-gray-light rounded-md px-3 py-2"
+          className="
+            bg-surface-muted text-charcoal border border-accent-light
+            dark:bg-gray-dark dark:text-gray-light dark:border-accent
+            rounded-md px-3 py-2
+            transition-colors
+          "
         >
           <option value="latest">Newest First</option>
           <option value="oldest">Oldest First</option>
@@ -92,80 +105,111 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
         <p className="text-gray-light text-lg">No articles available.</p>
       ) : (
         <>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {articles.map((a) => (
-              <div
-                key={a.id}
-                className="bg-gray-dark rounded-xl shadow-md hover:shadow-accent/30 p-5 transition-transform duration-200 hover:scale-[1.02] flex flex-col"
-              >
-                <h2 className="text-xl font-semibold text-accent mb-2">{a.title}</h2>
-                <p className="text-gray-light text-sm mb-1">
-                  <strong>Source:</strong> {a.source}
-                </p>
-                <p className="text-gray-light text-sm mb-3">
-                  <strong>Date:</strong> {formatDate(a.published_at)}
-                </p>
-                <p className="text-gray-light mb-4 text-justify leading-relaxed hyphens-auto">{a.summary}</p>
-                <div className="flex justify-between items-center mt-auto">
-                  {readOnly ? (
-                    <div className="relative group">
+          <div
+            className="
+              bg-surface-muted
+              dark:bg-transparent
+              rounded-2xl
+              p-6
+            "
+          >
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {articles.map((a) => (
+                <div
+                  key={a.id}
+                  className="
+                    rounded-xl shadow-md p-5 flex flex-col
+                    transition-transform duration-200 hover:scale-[1.02]
+
+                    bg-surface text-charcoal
+                    dark:bg-gray-dark dark:text-gray-light
+
+                    hover:shadow-accent-light/30
+                    dark:hover:shadow-accent/30
+                  "
+                >
+
+                  <h2 className="text-xl font-semibold text-accent-light dark:text-accent mb-2">{a.title}</h2>
+                  <p className="text-gray-muted dark:text-gray-light text-sm mb-1">
+                    <strong>Source:</strong> {a.source}
+                  </p>
+                  <p className="text-gray-muted dark:text-gray-light text-sm mb-3">
+                    <strong>Date:</strong> {formatDate(a.published_at)}
+                  </p>
+                  <p className="text-gray-muted dark:text-gray-light mb-4 text-justify leading-relaxed hyphens-auto">{a.summary}</p>
+                  <div className="flex justify-between items-center mt-auto">
+                    {readOnly ? (
+                      <div className="relative group">
+                        <button
+                          onClick={() => navigate("/login")}
+                          className="bg-gray-600 text-navy px-3 py-2 rounded-md font-semibold
+                                    cursor-pointer group-hover:bg-gray-500 transition"
+                        >
+                          Save
+                        </button>
+
+                        {/* Custom Tooltip */}
+                        <span
+                          className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2
+                                    bg-gray-800 text-gray-100 text-xs rounded-md px-2 py-1
+                                    opacity-0 group-hover:opacity-100 transition
+                                    whitespace-nowrap shadow-lg"
+                        >
+                          Login to save articles
+                        </span>
+                      </div>
+                    ) : (
                       <button
-                        onClick={() => navigate("/login")}
-                        className="bg-gray-600 text-navy px-3 py-2 rounded-md font-semibold
-                                  cursor-pointer group-hover:bg-gray-500 transition"
+                        onClick={() => handleSave(a.id)}
+                        className="bg-accent-light dark:bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
                       >
                         Save
                       </button>
+                    )}
 
-                      {/* Custom Tooltip */}
-                      <span
-                        className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2
-                                  bg-gray-800 text-gray-100 text-xs rounded-md px-2 py-1
-                                  opacity-0 group-hover:opacity-100 transition
-                                  whitespace-nowrap shadow-lg"
-                      >
-                        Login to save articles
-                      </span>
-                    </div>
-                  ) : (
-                    <button
-                      onClick={() => handleSave(a.id)}
-                      className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
+                    <a
+                      href={a.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent-light dark:text-accent font-semibold hover:underline cursor-pointer"
                     >
-                      Save
-                    </button>
-                  )}
-
-                  <a
-                    href={a.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-accent font-semibold hover:underline cursor-pointer"
-                  >
-                    Read more →
-                  </a>
+                      Read more →
+                    </a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
           <div className="flex justify-center items-center gap-4 mt-8">
             <button
               disabled={page === 1}
               onClick={() => setPage(page - 1)}
-              className="px-4 py-2 bg-gray-dark text-gray-light rounded-lg border border-accent disabled:opacity-40"
+              className="
+                px-4 py-2 rounded-lg border
+                bg-surface-muted text-charcoal border-accent-light
+                dark:bg-gray-dark dark:text-gray-light dark:border-accent
+                disabled:opacity-40
+                transition-colors
+              "
             >
               Previous
             </button>
 
-            <span className="text-accent font-semibold">
+            <span className="text-accent-light dark:text-accent font-semibold">
               Page {page} of {totalPages}
             </span>
 
             <button
               disabled={page === totalPages}
               onClick={() => setPage(page + 1)}
-              className="px-4 py-2 bg-gray-dark text-gray-light rounded-lg border border-accent disabled:opacity-40"
+              className="
+                px-4 py-2 rounded-lg border
+                bg-surface-muted text-charcoal border-accent-light
+                dark:bg-gray-dark dark:text-gray-light dark:border-accent
+                disabled:opacity-40
+                transition-colors
+              "
             >
               Next
             </button>

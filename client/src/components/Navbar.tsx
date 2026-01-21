@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
+import { ThemeToggle } from "./ThemeToggle";
 
 export const Navbar = () => {
   const { isAuthenticated, logout } = useAuth();
@@ -13,10 +14,17 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-dark text-gray-light px-6 py-3 shadow-md">
+    <nav
+      className="
+        px-6 py-3 shadow-md
+        bg-accent-light/5 text-gray-muted
+        dark:bg-gray-dark dark:text-gray-light
+        transition-colors
+      "
+    >
       <div className="flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="text-accent text-2xl font-bold">
+        <Link to="/" className="text-accent-light dark:text-accent text-2xl font-bold transition-colors">
           Security Pulse
         </Link>
 
@@ -24,18 +32,25 @@ export const Navbar = () => {
         <div className="hidden md:flex space-x-6 items-center">
           {isAuthenticated ? (
             <>
-              <Link to="/dashboard" className="hover:text-accent transition">
+              <Link to="/dashboard" className="hover:text-accent-light dark:hover:text-accent transition">
                 Home
               </Link>
-              <Link to="/saved" className="hover:text-accent transition">
+              <Link to="/saved" className="hover:text-accent-light dark:hover:text-accent transition">
                 Saved
               </Link>
               <button
                 onClick={handleLogout}
-                className="bg-accent text-navy px-3 py-1 rounded-md font-semibold hover:bg-gray-light transition"
+                className="
+                  bg-accent-light text-white
+                  hover:bg-accent-light/90
+                  dark:bg-accent dark:text-navy
+                  transition
+                  px-3 py-1 rounded-md font-semibold
+                "
               >
                 Logout
               </button>
+              <ThemeToggle />
             </>
           ) : (
             <>
@@ -45,6 +60,7 @@ export const Navbar = () => {
               <Link to="/register" className="hover:text-accent transition">
                 Register
               </Link>
+              <ThemeToggle />
             </>
           )}
         </div>
@@ -115,7 +131,7 @@ export const Navbar = () => {
                   handleLogout();
                   setIsOpen(false);
                 }}
-                className="bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition w-fit mx-left"
+                className="bg-accent-light dark:bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition w-fit mx-left"
                 >
                 Logout
               </button>
@@ -138,6 +154,9 @@ export const Navbar = () => {
               </Link>
             </>
           )}
+          <div className="mt-3">
+            <ThemeToggle />
+          </div>
         </div>
       )}
     </nav>
