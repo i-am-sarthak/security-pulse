@@ -7,27 +7,46 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
+      aria-label="Toggle theme"
       className="
-        relative inline-flex h-8 w-16 items-center rounded-full
-        bg-gray-300 dark:bg-gray
+        relative flex h-9 w-16 items-center rounded-full
+        bg-gray-300
         transition-colors duration-300
         focus:outline-none
       "
-      aria-label="Toggle theme"
     >
       {/* Knob */}
       <span
         className={`
-          inline-block h-6 w-6 transform rounded-full
-          bg-white dark:bg-navy
-          transition-transform duration-300
-          ${isDark ? "translate-x-9" : "translate-x-1"}
+          absolute left-1 top-1 h-7 w-7 rounded-full
+          bg-white
+          shadow-md
+          transition-all duration-300 ease-out
+          ${isDark ? "translate-x-7" : "translate-x-0"}
         `}
-      />
+      >
+        {/* Sun */}
+        <span
+          className={`
+            absolute inset-0 flex items-center justify-center text-sm
+            transition-opacity duration-200
+            ${isDark ? "opacity-0" : "opacity-100"}
+          `}
+        >
+          ☀️
+        </span>
 
-      {/* Icons */}
-      <span className="absolute left-2 text-xs">☀️</span>
-      <span className="absolute right-2 text-xs">🌙</span>
+        {/* Moon */}
+        <span
+          className={`
+            absolute inset-0 flex items-center justify-center text-sm
+            transition-opacity duration-200
+            ${isDark ? "opacity-100" : "opacity-0"}
+          `}
+        >
+          🌙
+        </span>
+      </span>
     </button>
   );
 };

@@ -54,10 +54,10 @@ export const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to="/login" className="hover:text-accent transition">
+              <Link to="/login" className="hover:text-accent-light dark:hover:text-accent transition">
                 Login
               </Link>
-              <Link to="/register" className="hover:text-accent transition">
+              <Link to="/register" className="hover:text-accent-light dark:hover:text-accent transition">
                 Register
               </Link>
               <ThemeToggle />

@@ -161,7 +161,7 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
                     ) : (
                       <button
                         onClick={() => handleSave(a.id)}
-                        className="bg-accent-light dark:bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition"
+                        className="bg-accent-light text-white hover:bg-accent-light/90 dark:bg-accent dark:text-navy dark:hover:bg-accent/90 transition px-3 py-2 rounded-md font-semibold"
                       >
                         Save
                       </button>
