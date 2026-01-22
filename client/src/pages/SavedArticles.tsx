@@ -68,10 +68,10 @@ export const SavedArticles = () => {
   if (articles.length === 0)
     return (
       <div className="min-h-screen bg-surface-muted text-charcoal dark:bg-navy dark:text-gray-light flex flex-col items-center justify-center">
-        <h1 className="text-3xl font-bold text-accent mb-4">
+        <h1 className="text-3xl font-bold text-accent-light dark:text-accent mb-4">
           No Saved Articles
         </h1>
-        <p className="text-gray-light text-lg">
+        <p className="text-accent-light dark:text-accent text-lg">
           You haven’t saved any articles yet. Explore the dashboard to find some!
         </p>
       </div>

@@ -67,7 +67,7 @@ export const Navbar = () => {
 
         {/* Hamburger (Mobile Only) */}
         <button
-        className="md:hidden text-accent focus:outline-none text-3xl"
+        className="md:hidden text-accent-light dark:text-accent focus:outline-none text-3xl"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle menu"
         >
@@ -109,19 +109,19 @@ export const Navbar = () => {
 
       {/* Mobile Dropdown */}
       {isOpen && (
-        <div className="md:hidden flex flex-col space-y-3 mt-3 bg-gray-dark border-t border-accent pt-3 pb-4 animate-slideDownFade">
+        <div className="md:hidden flex flex-col space-y-3 mt-3 bg-accent-light/4 dark:bg-gray-dark pt-3 pb-4 animate-slideDownFade">
           {isAuthenticated ? (
             <>
               <Link
                 to="/dashboard"
-                className="hover:text-accent transition"
+                className="hover:text-accent-light dark:hover:text-accent transition"
                 onClick={() => setIsOpen(false)}
               >
                 Articles
               </Link>
               <Link
                 to="/saved"
-                className="hover:text-accent transition"
+                className="hover:text-accent-light dark:hover:text-accent transition"
                 onClick={() => setIsOpen(false)}
               >
                 Saved
@@ -131,7 +131,7 @@ export const Navbar = () => {
                   handleLogout();
                   setIsOpen(false);
                 }}
-                className="bg-accent-light dark:bg-accent text-navy px-3 py-2 rounded-md font-semibold hover:bg-gray-light transition w-fit mx-left"
+                className="bg-accent-light text-white hover:bg-accent-light/90 dark:bg-accent dark:text-navy dark:hover:bg-accent/90 px-3 py-2 rounded-md font-semibold transition w-fit mx-left"
                 >
                 Logout
               </button>
