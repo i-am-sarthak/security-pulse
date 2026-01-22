@@ -142,18 +142,29 @@ export const Dashboard = ({ readOnly = false }: DashboardProps) => {
                       <div className="relative group">
                         <button
                           onClick={() => navigate("/login")}
-                          className="bg-gray-600 text-navy px-3 py-2 rounded-md font-semibold
-                                    cursor-pointer group-hover:bg-gray-500 transition"
+                          className="
+                            bg-accent-light/70 text-white
+                            hover:bg-accent-light
+                            dark:bg-accent/70 dark:text-navy
+                            dark:hover:bg-accent
+                            transition
+                            px-3 py-2 rounded-md font-semibold
+                            cursor-pointer
+                          "
                         >
                           Save
                         </button>
 
                         {/* Custom Tooltip */}
                         <span
-                          className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2
-                                    bg-gray-800 text-gray-100 text-xs rounded-md px-2 py-1
-                                    opacity-0 group-hover:opacity-100 transition
-                                    whitespace-nowrap shadow-lg"
+                          className="
+                            pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2
+                            bg-charcoal text-white
+                            dark:bg-gray-dark dark:text-gray-light
+                            text-xs rounded-md px-2 py-1
+                            opacity-0 group-hover:opacity-100 transition
+                            whitespace-nowrap shadow-lg
+                          "
                         >
                           Login to save articles
                         </span>
