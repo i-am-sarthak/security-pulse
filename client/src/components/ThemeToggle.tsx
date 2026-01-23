@@ -13,7 +13,7 @@ export const ThemeToggle = () => {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle theme"
-      className="relative w-[70px] h-[36px] rounded-full overflow-hidden focus:outline-none"
+      className="relative w-[67px] h-[30px] rounded-full overflow-hidden focus:outline-none"
     >
       {/* Background */}
       <img
@@ -25,7 +25,7 @@ export const ThemeToggle = () => {
       <span
         className={`
           absolute top-[3px] left-[3px]
-          w-[30px] h-[30px]
+          w-[25px] h-[25px]
           rounded-full bg-white shadow-md
           flex items-center justify-center
           transition-transform duration-300 ease-out
@@ -36,7 +36,7 @@ export const ThemeToggle = () => {
         src={isDark ? Moon : Sun}
         className={`
             w-full h-full object-contain transition-transform duration-200
-            ${isDark ? "scale-[2.0]" : "scale-[1.4]"}
+            ${isDark ? "scale-[1.2]" : "scale-[1.4]"}
         `}
         />
       </span>
