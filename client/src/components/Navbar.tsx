@@ -38,6 +38,9 @@ export const Navbar = () => {
               <Link to="/saved" className="hover:text-accent-light dark:hover:text-accent transition">
                 Saved
               </Link>
+              <Link to="/threat-center" className="hover:text-accent-light dark:hover:text-accent transition">
+                Threat Center
+              </Link>
               <button
                 onClick={handleLogout}
                 className="

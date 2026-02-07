@@ -10,6 +10,8 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { DashboardPublicWrapper } from "./pages/DashboardPublicWrapper";
 // import { Dashboard } from "./pages/Dashboard";
 import { SavedArticles } from "./pages/SavedArticles";
+import { ThreatCenter} from "./pages/ThreatCenter";
+import { ThreatDetail} from "./pages/ThreatDetail";
 import "./index.css"
 import { Toaster } from 'react-hot-toast';
 
@@ -26,6 +28,22 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SavedArticles />
+          </ProtectedRoute>
+        ),
+      },
+      { 
+        path: "/threat-center",
+        element: (
+          <ProtectedRoute>
+            <ThreatCenter />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/threat-center/:slug",
+        element: (
+          <ProtectedRoute>
+            <ThreatDetail />
           </ProtectedRoute>
         ),
       },
