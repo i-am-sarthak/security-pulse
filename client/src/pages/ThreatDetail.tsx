@@ -73,12 +73,12 @@ export const ThreatDetail = () => {
     >
       <button
         onClick={() => navigate(-1)}
-        className="mb-6 text-sm text-accent hover:underline"
+        className="mb-6 text-sm text-accent-light dark:text-accent hover:underline"
       >
         ← Back to Threat Center
       </button>
 
-      <h1 className="text-3xl font-bold text-folly dark:text-accent mb-4">
+      <h1 className="text-3xl font-bold text-folly text-accent-light dark:text-accent mb-4">
         {threat.name}
       </h1>
 
@@ -126,7 +126,7 @@ export const ThreatDetail = () => {
                     href={a.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-accent text-sm font-semibold hover:underline"
+                    className="text-accent-light dark:text-accent text-sm font-semibold hover:underline"
                   >
                     Read more →
                   </a>

@@ -52,7 +52,7 @@ export const ThreatCenter = () => {
         dark:bg-navy dark:text-gray-light
       "
     >
-      <h1 className="text-3xl font-bold text-folly dark:text-accent mb-6">
+      <h1 className="text-3xl font-bold text-folly text-accent-light dark:text-accent mb-6">
         Threat Center
       </h1>
 
@@ -73,7 +73,7 @@ export const ThreatCenter = () => {
             "
           >
             <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-semibold text-folly dark:text-accent">
+              <h2 className="text-xl font-semibold text-folly text-accent-light dark:text-accent">
                 {t.name}
               </h2>
               <span
@@ -89,7 +89,7 @@ export const ThreatCenter = () => {
               {t.description}
             </p>
 
-            <div className="mt-4 text-xs text-accent font-semibold">
+            <div className="mt-4 text-xs text-accent-light dark:text-accent font-semibold">
               Learn more →
             </div>
           </div>
